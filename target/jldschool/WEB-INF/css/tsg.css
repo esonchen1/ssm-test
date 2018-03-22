@@ -1,0 +1,24 @@
+/* CSS Document */
+*{ margin:0px; padding:0px;}
+html{ background:#FFFFEA;}
+a:link,a:visited{text-decoration:none;}
+a:hover{ color:#9900FF;}
+a:link{color:black}
+.all{ width:1000px; position:relative; left:230px; overflow:hidden;}
+
+.jldtb{ position:relative; overflow:hidden;}
+.jldtb li{ list-style:none;}
+.li-1{ position:relative; top:-160px;}
+.jldtb ul{ position:relative; text-align:right; top:-300px; right:200px;}
+
+.search{ position:relative; top:-250px; text-align:right; right:230px;}
+
+#bo{ position:relative;width:250px; height:230px; left:40px; top:-250px;}
+#bo .asf{ width:1000px;}
+#bo .asf li{list-style: none;display: inline-block; overflow:hidden;background-color:#EFEFEF;
+    position:relative; left:-40px;float: left;width:250px;margin-right:10px;font-size:15px; margin-right:20px; margin-top:30px;}
+#bo a:hover{ color:#9900FF;}
+
+.footer{ background:#FFFFFF; width:800px; position:relative;overflow:hidden;}
+.footer li{ display:inline-block;}
+

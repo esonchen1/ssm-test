@@ -1,0 +1,16 @@
+/* CSS Document */
+.p1 li{position:relative; left:20px;list-style: none;}
+
+.gk{ position:relative; left:120px; border-bottom:1px solid #c8c8c8; margin:10px; width:1000px;}
+#boxs{ position:relative;width:250px; height:230px;left:120px;}
+#boxs .asd{ width:1000px;}
+#boxs .asd li{list-style: none;display: inline-block;/*使li对象显示为一行*/ overflow:hidden;background-color:#EFEFEF;position:relative; left:-40px;float: left;width:250px;margin-right:10px;font-size:15px; margin-right:50px; margin-top:30px;}
+#boxs a:hover{ color:#9900FF;}
+
+#boxs1{ position:relative;width:250px;left:120px;}
+#boxs1 .asd1{ width:1000px;}
+#boxs1 .asd1 li{list-style: none;display: inline-block;/*使li对象显示为一行*/ overflow:hidden;background-color:#EFEFEF;position:relative; left:-40px;float: left;width:250px;font-size:15px; margin-right:50px; border-top:5px solid #9900CC;}
+#boxs1 a:hover{ color:#9900FF;}
+
+
+

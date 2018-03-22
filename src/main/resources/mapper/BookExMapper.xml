@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jld.ssm.dao.BookExMapper">
+  <select id="bookList" parameterType="com.jld.ssm.pojo.BookEn" resultType="com.jld.ssm.pojo.BookEx">
+    SELECT book.* FROM book
+      WHERE book.name LIKE '%${word}%' OR book.bnum LIKE '%${word}%'
+  </select>
+
+  <select id="allBookList" parameterType="com.jld.ssm.pojo.BookEn" resultType="com.jld.ssm.pojo.BookEx">
+    SELECT * FROM book
+  </select>
+</mapper>

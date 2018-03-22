@@ -1,0 +1,18 @@
+/* CSS Document */
+*{ margin:0px; padding:0px;}
+li{list-style:none;}
+
+.login li{  display:inline-block;}
+
+#loginbox{ position:relative; text-align:center;}
+#loginbox ul{ display:inline-block;}
+#loginbox li{margin-top:10px;}
+#loginbox span{ color:#FF0000;}
+
+#registerbox{ position:relative; text-align:center;}
+#registerbox ul{ display:inline-block;}
+#registerbox li{margin-top:10px;}
+#registerbox span{font:14px/34px SimSun; width:110px; position:relative;}
+#registerbox span i{color:red; font-style:normal; margin-right:5px;}
+#registerbox .item{ display:inline; float:right;}
+
