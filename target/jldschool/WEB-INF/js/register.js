@@ -1,10 +1,10 @@
 function myfunction(){
 	var id1 = document.getElementById("account").value;
-	var passwd1 = document.getElementById("password1").value;
-	var passwd2 = document.getElementById("password2").value;
+	var passwd1 = document.getElementById("password").value;
+	var passwd2 = document.getElementById("password1").value;
 	var name = document.getElementById("name0").value;
 	var sex = document.getElementById("sex0").value;
-	if(accout==""){
+	if(account==""){
 		alert("学号不能为空");
 		return false;
 	}else if(passwd1==""){

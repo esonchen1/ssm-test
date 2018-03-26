@@ -15,6 +15,7 @@
        http://www.springframework.org/schema/cache/spring-cache.xsd">
 
 
+
     <!-- shiro start -->
     <!-- 1. 配置SecurityManager -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
@@ -62,7 +63,18 @@
 
     <!-- 3. 配置Realm -->
     <!-- 3.1 直接配置继承了org.apache.shiro.realm.AuthorizingRealm的bean -->
-    <bean id="userRealm" class="com.jld.ssm.shiro.UserRealm"></bean>
+    <bean id="userRealm" class="com.jld.ssm.shiro.UserRealm">
+        <property name="credentialsMatcher">
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                <!-- 加密算法为MD5 -->
+                <property name="hashAlgorithmName" value="MD5"></property>
+                <!-- 加密次数 -->
+                <property name="hashIterations" value="1024"></property>
+                <property name="storedCredentialsHexEncoded" value="true"></property>
+            </bean>
+        </property>
+    </bean>
+
 
     <!-- 4. 配置LifecycleBeanPostProcessor，可以自定义地来调用配置在Spring IOC容器中shiro bean的生命周期方法 -->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
@@ -81,14 +93,10 @@
         值一致的filter bean -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager" />
-        <property name="loginUrl" value="/function/login.jsp" />
-        <property name="successUrl" value="/WEB-INF/pages/index.jsp" />
-        <property name="unauthorizedUrl" value="/function/login.jsp" />
         <!-- 配置哪些页面需要受保护，以及访问这些页面需要的权限 -->
         <property name="filterChainDefinitions">
             <value>
                 <!-- 第一次匹配优先的原则 -->
-
                 /** = anon
             </value>
         </property>

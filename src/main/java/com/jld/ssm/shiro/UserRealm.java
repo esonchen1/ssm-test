@@ -13,9 +13,11 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Map;
 
 public class UserRealm extends AuthorizingRealm{
     @Autowired
@@ -25,19 +27,31 @@ public class UserRealm extends AuthorizingRealm{
     @Autowired
     PermissionService permissionService;
 
+
+
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        Users users =null;
-        String account = String.valueOf(token.getPrincipal());
-        String password = new String((char[]) token.getCredentials());
+        // 将token装换成UsernamePasswordToken
+        UsernamePasswordToken upToken = (UsernamePasswordToken) token;
+        // 获取用户名即可
+        String account = upToken.getUsername();
+        // 查询数据库，是否查询到用户名和密码的用户
         try {
-            users =userService.login(account, password);
+            Map<String, Object> userInfo = userService.queryInfoByUsername(account);
+            // 如果查询到了，封装查询结果，返回给我们的调用
+            Object principal =  userInfo.get("account");
+            Object credentials = userInfo.get("password");
+
+            // 获取盐值，即用户名
+            ByteSource salt = ByteSource.Util.bytes(account);
+            String realmName = this.getName();
+            // 将账户名，密码，盐值，realmName实例化到SimpleAuthenticationInfo中交给Shiro来管理
+            SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(principal, credentials, salt,realmName);
+            return info;
         }catch (Exception e){
-            throw new UnknownAccountException();
+            throw new AuthenticationException();
         }
 
-        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(account,password,getName());
-        return info;
     }
 
     @Override
@@ -45,19 +59,21 @@ public class UserRealm extends AuthorizingRealm{
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
         String account = String.valueOf(principals.getPrimaryPrincipal());
         try {
-            final Users users = userService.getByAccout(account);
-            final List<RoleEx> roleList = roleService.roleList(users.getId());
+             Users users = userService.getByAccout(account);
+             List<RoleEx> roleList = roleService.roleList(users.getId());
             for(RoleEx roleEx : roleList){
-                simpleAuthorizationInfo.addRole(roleEx.getRoleSign());
-                List<PermissionEx> permissionExList = permissionService.permissionList(users.getId());
+                System.err.println(roleEx);
+                simpleAuthorizationInfo.addRole(roleEx.getDescription());
+
+                List<PermissionEx> permissionExList = permissionService.permissionList(roleEx.getId());
                 for(PermissionEx permissionEx : permissionExList){
+                    System.err.println(permissionEx);
                     simpleAuthorizationInfo.addStringPermission(permissionEx.getPeimissionSign());
                 }
             }
         }catch (Exception e){
-            throw new UnknownAccountException();
+            e.printStackTrace();
         }
-
         return simpleAuthorizationInfo;
     }
 }

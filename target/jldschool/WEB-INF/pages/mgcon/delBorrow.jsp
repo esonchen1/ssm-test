@@ -36,7 +36,7 @@
             <td>bookName</td>
             <td>btime</td>
             <td>retime</td>
-            <shiro:hasRole name="admin">
+            <shiro:hasRole name="管理员">
             <td>description</td>
             </shiro:hasRole>
         </tr>
@@ -53,7 +53,7 @@
                         <td>${borrow.bookName}</td>
                         <td>${borrow.btime}</td>
                         <td>${borrow.retime}</td>
-                        <shiro:hasRole name="admin">
+                        <shiro:hasRole name="管理员">
                         <td><input type="submit" name="del" value="删除"></td>
                         <input type="hidden" name="boid" value="${borrow.id}">
                         </shiro:hasRole>

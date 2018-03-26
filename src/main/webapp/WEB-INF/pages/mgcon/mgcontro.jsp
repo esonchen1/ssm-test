@@ -28,12 +28,13 @@
 <body>
 <div id="mgcontro">
     <ul>
-        <shiro:hasRole name="admin">
+        <shiro:hasRole name="管理员">
         <li><a href="${pageContext.request.contextPath}/toAddBorrow" target="_blank"><input type="submit" id="borrow" name="borrow" value="借阅"></a></li>
         <li><a href="${pageContext.request.contextPath}/check" target="_blank"><input type="submit" id="return" name="return" value="归还"></a></li>
         <li><a href="#" target="_blank"><input type="submit" id="pay" name="pay" value="缴费"></a></li>
         </shiro:hasRole>
-        <li><a href="${pageContext.request.contextPath}/check" target="_blank"><input type="submit" id="userCheck" name="usercheck" value="查询"></a></li>
+        <li><a href="${pageContext.request.contextPath}/check" target="_blank">
+            <input type="submit" id="userCheck" name="usercheck" value="查询"></a></li>
     </ul>
 </div>
 <iframe id="view" width="100%" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" scrolling="no" frameborder="0" ></iframe>

@@ -3,6 +3,8 @@ package com.jld.ssm.service;
 import com.jld.ssm.pojo.Users;
 import com.jld.ssm.pojo.UsersEx;
 
+import java.util.Map;
+
 /**
  * @Author:esonchen
  * @Description:
@@ -12,9 +14,9 @@ public interface UserService {
     //get accout
     public Users getByAccout(String account)throws Exception;
 
-    //login
-    public Users login(String account, String password)throws Exception;
+    //check login
+    public Map<String,Object> queryInfoByUsername(String account)throws Exception;
 
-    //register
-    public void register(String account, UsersEx usersEx)throws Exception;
+    //check register
+    public boolean insertData(String account,String password,Users users)throws Exception;
 }

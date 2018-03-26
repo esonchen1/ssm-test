@@ -24,7 +24,7 @@
             </li>
             <li><span><i>*</i>请输入密码:</span><div class="item"><input type="password" id="password1" name="password" style="height:30px;"/></div>
             </li>
-            <li><span><i>*</i>请确认密码:</span><div class="item"><input type="password" id="password2" name="password" style="height:30px;"/></div>
+            <li><span><i>*</i>请确认密码:</span><div class="item"><input type="password" id="password2" name="password1" style="height:30px;"/></div>
             </li>
             <li><span><i>*</i>姓名:</span><div class="item"><input type="text" id="name0" name="name" style="height:30px;"/></div>
             </li>

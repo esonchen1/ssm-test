@@ -32,19 +32,21 @@
         <li><img src="${pageContext.request.contextPath}img/bj.jpg" /></li>
         <li class="li-1"><img src="${pageContext.request.contextPath}img/jldtb.png" /></li>
         <ul>
-                <shiro:guest>
-                <li><img src="${pageContext.request.contextPath}img/hq.png" />
-                    <a href="${pageContext.request.contextPath}/loginUI?type=0">登录</a>
-                    <a href="${pageContext.request.contextPath}/loginUI?type=1">注册</a></li>
-                <li><img src="${pageContext.request.contextPath}img/hq.png" />
-                    <a href="${pageContext.request.contextPath}htm/loginService.html">借还书籍</a></li>
-                </shiro:guest>
-                <shiro:user>
-                    <li><img src="${pageContext.request.contextPath}img/hq.png" /><shiro:principal/>欢迎!
+            <c:choose>
+                <c:when test="${userInfo==null}">
+                    <li><img src="${pageContext.request.contextPath}img/hq.png" />
+                        <a href="${pageContext.request.contextPath}/loginUI?type=0">登录</a>
+                        <a href="${pageContext.request.contextPath}/loginUI?type=1">注册</a></li>
+                    <li><img src="${pageContext.request.contextPath}img/hq.png" />
+                        <a href="${pageContext.request.contextPath}htm/loginService.html">借还书籍</a></li>
+                </c:when>
+                <c:otherwise>
+                    <li><img src="${pageContext.request.contextPath}img/hq.png" />${userInfo.account}欢迎!
                         <a href="${pageContext.request.contextPath}/loginOut">注销</a></li>
                     <li><img src="${pageContext.request.contextPath}img/hq.png" />
                         <a href="${pageContext.request.contextPath}/toMgContro" target="_blank">借还书籍</a></li>
-                </shiro:user>
+                </c:otherwise>
+            </c:choose>
             <li><img src="${pageContext.request.contextPath}img/hq.png" /><a href="#">服务申请</a></li>
             <li><img src="${pageContext.request.contextPath}img/hq.png" /><a href="#">开馆时间</a></li>
             <li><img src="${pageContext.request.contextPath}img/hq.png" /><a href="#">咨询培训</a></li>

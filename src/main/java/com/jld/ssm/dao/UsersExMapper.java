@@ -2,10 +2,10 @@ package com.jld.ssm.dao;
 
 import com.jld.ssm.pojo.Users;
 
+import java.util.Map;
+
 public interface UsersExMapper {
     //check login
-    public Users checkUsers(String account, String password)throws Exception;
+    public Map<String,Object> queryInfoByUsername(String account)throws Exception;
 
-    //check register
-    public Users register(String account)throws Exception;
 }
